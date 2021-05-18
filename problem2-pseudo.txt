@@ -1,0 +1,45 @@
+Note: A set of characters can form a palindrome if at most one character occurs 
+odd number of times and all characters occur even number of times.
+If length of string is even, all letters should be even. If string length is odd, 
+all letters counts should be even except one. For the latter case, start moving the
+element with odd count to the middle. 
+A near-palindrome can only have 1 odd character count.
+
+1. Check if input string is near-palindrome.
+	
+	Define function isNearPalindrome(string)
+		seen chars = new map
+		for each letter in string:
+			seen chars += 1 + (seen char if exists else 0)
+		oddCharsCount = 0
+		for each key, value pair of seen chars map:
+			if values are not even:
+				oddCharsCount += 1
+			if oddCharsCount > 1: 
+				return False
+		return True
+
+2. Calculate number of operations to convert string to near-palindrome.
+	
+	If the string is NOT NearPalindrome:
+		incremented = ''
+		number of operations = 0
+		first position = 0
+		last position = length of string - 1
+		
+		s = new list of chars from string
+
+		while first position < last position:
+			if s[first position] is not the same as s[last position]:
+				incremented = increment char with minimum cost (Unicode value)
+				number of operations += 1
+				increment first position
+				decrement last position
+			return number of operations
+	else:
+		return 0 Since string is already a near-palindrome
+
+Complexity:
+	Time O(n)
+	Space O(n)		
+				
